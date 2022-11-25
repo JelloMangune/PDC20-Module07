@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity 1</title>
+
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <div class="container" style="padding-top: 40px;height: 220px;border-radius: 10px;box-shadow: 4px 4px;">
+        <form name="form">
+        <div ng-hide="toShow">
+            <h1 style="color:white;text-align:center">Sign Up</h1>
+            <div class="box">
+                <label for="username" class="fl fontLabel" ng-model="username" >Username:</label>
+                <div class="fl iconBox" style="border-radius: 5px;box-shadow: 2px 2px;">
+                    <i class="fa fa-envelope" aria-hidden="true" ></i>
+                </div>
+                <div class="fr">
+                    <input type="text" class="textBox" id="username" ng-model="username"  style="border-radius: 5px;box-shadow: 2px 2px;" required/>
+                </div>
+            </div>    
+            <div class="box">
+                <label for="password" class="fl fontLabel" ng-model="password" >Password:</label>
+                <div class="fl iconBox" style="border-radius: 5px;box-shadow: 2px 2px;">
+                    <i class="fa fa-envelope" aria-hidden="true" ></i>
+                </div>
+                <div class="fr">
+                    <input type="password" class="textBox" id="password" ng-model="password"  style="border-radius: 5px;box-shadow: 2px 2px;" ng-hide="showPassword" required/>
+                    <input type="text" class="textBox" id="password" ng-model="password"  style="border-radius: 5px;box-shadow: 2px 2px;" ng-show="showPassword" required/>
+                </div>
+            </div>  
+            <div class="box terms">
+                <input type="checkbox" name="Terms" ng-model="showPassword" ng-init="showPassword" ng-model="showPassword"> &nbsp; Show Password
+            </div> 
+            <div class="box" style="background: #2d3e3f">
+                <input type="button" class="submit" ng-disabled="form.$invalid" ng-click="toShow = true" value="Register" style="border-radius: 5px;box-shadow: 2px 2px black;">
+            </div>
+        </div>
+
+        <div ng-show="toShow">
+            <h1 style="color:white;text-align:center">Welcome {{username}} !</h1>
+            <h4 style="color:white;text-align:center">Thank you for your registration</h4>
+            <div class="box">
+                <input type="checkbox" name="Terms" ng-model="editUser" ng-init="editUser" ng-model="editUser"> &nbsp; Edit username
+                <div class="fr">
+                    <input type="text" class="textBox" id="username" ng-model="username"  style="border-radius: 5px;box-shadow: 2px 2px;" value="{{username}}" ng-readonly="editUser != true"/>
+                </div>
+            </div> 
+            <div class="box">
+                <input type="checkbox" name="password" ng-model="editPassword" ng-init="editPassword" ng-model="editPassword"> &nbsp; Edit password
+                <div class="fr">
+                    <input type="password" class="textBox" id="password" ng-model="password"  style="border-radius: 5px;box-shadow: 2px 2px;" value="{{password}}" ng-disabled="editPassword != true" disabled/>
+                </div>
+            </div> 
+            <br>
+            <div class="box" style="background: #2d3e3f">
+                <input type="button" class="submit" ng-click="toShow = false" value="Logout" style="border-radius: 5px;box-shadow: 2px 2px black;">
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+</html>
